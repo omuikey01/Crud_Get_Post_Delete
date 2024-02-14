@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Landing </h1>
+    <form action="{% url 'form' %}" method="get">
+        <input type="text" placeholder="From" name="from">
+        <input type="text" placeholder="To" name="to" >
+        <input type="number" placeholder="Km" name="km" >
+        <input type="number" placeholder="Price" name="price" >
+        <input type="submit" value="submit">
+    </form>
+
+
+    <a href="{% url 'show' %}"> Show </a>
+
+<section>
+    <table border="2" cellpadding="10" >
+        <tr> 
+            <th> From </th>
+            <th> To </th>
+            <th> Km </th>
+            <th> Price </th>
+            <th> Delete </th>
+        <tr>
+
+        {% for i in alldata %}
+        <tr> 
+            <td> {{i.user_from}} </td>
+            <td> {{i.user_to}} </td>
+            <td> {{i.km}} </td>
+            <td> {{i.price}} </td>
+
+            <form action="{% url 'delete' %}" method="get">
+                <input value={{i.id}} name="deleteid" hidden >
+                <td> <input type="submit" value="delete"> </td>
+            </form>
+        <tr>
+        {% endfor %}
+    </table>
+    
+    <a href="{% url 'delete' %}"> <button> Delete </button> </a>
+
+</section>
+</body>
+</html>
